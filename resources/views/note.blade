@@ -1,0 +1,16 @@
+<div class="image">
+                                <?php $img="";?>
+                                @foreach ($image_product as $key1 => $value1) 
+                                     
+                                      <?php $result= array();
+                                      
+                                        if($value1->prod_id==$value->prod_id){
+                                            $img=$img."". $value1->image_name.";";
+                                        }
+                                      ?>
+                                @endforeach
+                               <?php 
+                                $lstImg=explode(";", $img);
+                               ?>
+                                  <img src="{{('public/upload/product/'.trim($lstImg[0]))}}" alt=""> 
+                                </div>
