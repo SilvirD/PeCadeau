@@ -29,7 +29,7 @@
                     <h2>{{$product[0]->prod_name}}</h2>
                     <p>Describe: <b>{{$product[0]->prod_desc}}</b></p>
                     <hr>
-                    <p>Price: <b>{{$product[0]->prod_price}}</b> </p>
+                    <p class="product-price">Price: <b>{{$product[0]->prod_price}}</b> VND</p>
                     <hr>
                     <label for="exampleInputEmail1">Quantity: </label>
                     <input type="number" name="prod_qty" class="prod_quantity" min="1" value="1">

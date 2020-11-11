@@ -32,12 +32,45 @@
                 </nav>
                 <!--search-->
                 <div class="search-box">
-                    <form action="{{URL::to('/tim-kiem')}}" medthod = "POST">
-                    {{csrf_field()}}
-                        <input class="sb-text" type="text" name="keywords_submit" placeholder="Search">
-                        <input class="sb-sbm" type="submit" name="search-items">
+                    <form action="{{URL::to('/tim-kiem')}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="text" class="sb-text" name="keywords_submit" placeholder="Search">
+                        <input class="sb-sbm fas fa-search" type="submit" name="search_items">
+
+                        <!-- Check Login-logout -->
+                        <?php
+                            $customer_id = Session::get('acc_id');
+                            if($customer_id != NULL) {
+                        ?>
+                        <a href="{{URL::to('/logout-checkout')}}"><i class="fas fa-user-circle"
+                                style="color:black; margin-left:15px"></i> Log out</a>
+                        <?php
+                        }else{
+                        ?>
                         <a href="{{URL::to('/login-checkout')}}"><i class="fas fa-user-circle"
-                                style="color:black; margin-left:15px"></i> Account</a>
+                                style="color:black; margin-left:15px"></i> Log in</a>
+                        <?php
+                        }
+                        ?>
+                        <!-- end check login-logout -->
+
+                        <!-- Check Payment -->
+                         <?php
+                            $customer_id = Session::get('acc_id');
+                            if($customer_id != NULL) {
+                        ?>
+                        <a href="{{URL::to('/checkout')}}"><i class="fas fa-crosshairs"
+                                style="color:black; margin-left:15px"></i> Payment</a>
+                        <?php
+                        }else{
+                        ?>
+                        <a href="{{URL::to('/login-checkout')}}"><i class="fas fa-crosshairs"
+                                style="color:black; margin-left:15px"></i> Payment</a>
+                        <?php
+                        }
+                        ?>
+                        <!-- end check payment -->
+
                         <a href="{{URL::to('/show-cart')}}"><i class="fas fa-shopping-cart"
                                 style="color:black; margin-left:15px"></i> Cart</a>
                     </form>
@@ -96,7 +129,7 @@
             <h1>Petit Cadeau</h1>
             <p>For a perfect relative</p>
         </div>
-        <a href="#" class="btn-WN">Watch now</a>
+        <a href="{{URL::to('/trang-chu')}}" class="btn-WN">Watch now</a>
     </section>
     @yield('content')
     <section id="introduce2" class="section-padding">
@@ -121,7 +154,7 @@
                 <span>Email: kingofpoppro@gmail.com</span>
             </p>
         </div>
-        <div class="social-icons pull-right">
+        <div class="social-icons">
             <ul>
                 <li><a href="https://www.facebook.com/ALittleLeafHomedecor"><i class="fab fa-facebook-square"></i></a>
                 </li>

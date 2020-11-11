@@ -2,21 +2,11 @@
 @section('content')
 
 
-<link href="{{asset('public/Frontend/css2/bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('public/Frontend/css2/prettyPhoto.css')}}" rel="stylesheet">
-<link href="{{asset('public/Frontend/css2/price-range.css')}}" rel="stylesheet">
-<link href="{{asset('public/Frontend/css2/animate.css')}}" rel="stylesheet">
+
 <link href="{{asset('public/Frontend/css2/main.css')}}" rel="stylesheet">
-<link href="{{asset('public/Frontend/css2/responsive.css')}}" rel="stylesheet">
 
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="{{URL::to('/')}}">Home</a></li>
-                <li class="active" style="margin-left:30px">Shopping Cart</li>
-            </ol>
-        </div>
         <div class="table-responsive cart_info">
             <?php
                     $content = Cart::content();
@@ -56,7 +46,7 @@
 
                                     <!-- <a class="cart_quantity_up" href=""> + </a> -->
                                     <input class="cart_quantity_input" type="text" name="cart_quantity"
-                                        value="{{$v_content->qty}}" size = "2">
+                                        value="{{$v_content->qty}}" size="2">
                                     <!-- <a class="cart_quantity_down" href=""> - </a> -->
                                     <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart"
                                         class="form-control">
@@ -100,12 +90,28 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        <li>Cart Total: <span>{{Cart::subtotal().' '.'vnđ'}}</span></li>
-                        <li>Tax: <span>{{Cart::tax().' '.'vnđ'}}</span></li>
+                        <li>Cart Total: <span>{{Cart::subtotal().' '.'VND'}}</span></li>
+                        <li>Tax: <span>{{Cart::tax().' '.'VND'}}</span></li>
                         <li>Shipping Cost: <span>Free</span></li>
-                        <li>Total: <span>{{Cart::total().' '.'vnđ'}}</span></li>
+                        <li>Total: <span>{{Cart::total().' '.'VND'}}</span></li>
                     </ul>
+
+                    <!-- Check Cart -->
+                    <?php
+                            $customer_id = Session::get('acc_id');
+                            if($customer_id != NULL) {
+                        ?>
+                    <a class="btn btn-default check_out" href="{{URL::to('/checkout')}}">Check Out</a>
+
+                    <?php
+                        }else{
+                        ?>
                     <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Check Out</a>
+
+                    <?php
+                        }
+                        ?>
+                    <!-- end check cart -->
                 </div>
             </div>
         </div>

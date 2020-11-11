@@ -1,33 +1,35 @@
 @extends('layout')
 @section('content')
+<div style="clear:both;">
 
+</div>
 <section id="introduce" class="section-padding">
     <div class="container text-center">
         <h2 class="title" style="color: lightcoral;">HOT DEAL</h2>
         <p class="sub-title" style="color: lightcoral;">----------</p>
         <div class="row">
-            @foreach($product as $key => $value)
-             @if($value->status_id == '3')
+            @foreach($product3 as $key => $value)
             <div class="col-lg-3">
                 <div class="item">
-                   
                     <figure>  
                         <img src="{{('public/Upload/product/'.$value->thumbnail)}}" alt="">
                         <figcaption>
                             <h3>{{$value->prod_name}}</h3>
                             <p>{{$value->prod_desc}}</p>
-                            <p class="product-price">{{$value->prod_price}}</p>
+                            <p class="product-price">{{$value->prod_price}} VND</p>
                             <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
                         </figcaption>
-                    </figure>
-                    
+                    </figure>    
                 </div>
             </div>
-            @endif
             @endforeach
         </div>
+        <br>
+        {!! $product3->links()  !!}
     </div>
 </section>
+
+
 <section id="introduce2" class="section-padding">
     <div class="container text-center">
         <h2 class="title" style="color: pink;">SPECIAL PRODUCT</h2>
@@ -38,8 +40,7 @@
     <div class="container text-center">
         <div class="row">
 
-            @foreach($product as $key => $value)
-            @if($value->status_id == '2')
+            @foreach($product2 as $key => $value)
             <div class="col-lg-3">
                 <div class="item">
                     <figure>  
@@ -47,17 +48,17 @@
                         <figcaption>
                             <h3>{{$value->prod_name}}</h3>
                             <p>{{$value->prod_desc}}</p>
-                            <p class="product-price">{{$value->prod_price}}</p>
+                            <p class="product-price">{{$value->prod_price}} VND</p>
                             <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
                         </figcaption>
                     </figure>
                     
                 </div>
             </div>
-            @endif
             @endforeach
-
         </div>
+        <br>
+        {!! $product2->links()  !!}
     </div>
 </section>
 <section id="introduce2" class="section-padding">
@@ -70,8 +71,7 @@
     <div class="container text-center">
         <div class="row">
 
-            @foreach($product as $key => $value)
-            @if($value->status_id == '4')
+            @foreach($product4 as $key => $value)
             <div class="col-lg-3">
                 <div class="item">
                     <figure>  
@@ -79,17 +79,17 @@
                         <figcaption>
                             <h3>{{$value->prod_name}}</h3>
                             <p>{{$value->prod_desc}}</p>
-                            <p class="product-price">{{$value->prod_price}}</p>
+                            <p class="product-price">{{$value->prod_price}} VND</p>
                             <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
                         </figcaption>
                     </figure>
                     
                 </div>
             </div>
-            @endif
             @endforeach
         </div>
-
+        <br>
+        {!! $product4->links()  !!}
     </div>
 
 </section>

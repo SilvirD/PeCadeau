@@ -32,9 +32,8 @@ Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard')
 Route::get('/logout','App\Http\Controllers\AdminController@logout');
 
 //category
-Route::get('/add-category','App\Http\Controllers\categoryProduct@add_category');
-
-Route::post('/save-category-product','App\Http\Controllers\categoryProduct@save_category_product');
+// Route::get('/add-category','App\Http\Controllers\categoryProduct@add_category');
+// Route::post('/save-category-product','App\Http\Controllers\categoryProduct@save_category_product');
 
 Route::get('/category/{id}','App\Http\Controllers\HomeController@category_product');
 
@@ -47,5 +46,8 @@ Route::get('/delete-item-cart/{rowId}','App\Http\Controllers\CartController@dele
 
 //Checkout
 Route::get('/login-checkout','App\Http\Controllers\CheckOutController@login_checkout');
+Route::get('/logout-checkout','App\Http\Controllers\CheckOutController@logout_checkout');
 Route::post('/add-customer','App\Http\Controllers\CheckOutController@add_customer');
+Route::post('/login-customer','App\Http\Controllers\CheckOutController@login_customer');
 Route::get('/checkout','App\Http\Controllers\CheckOutController@checkout');
+Route::post('/save-checkout-customer','App\Http\Controllers\CheckOutController@save_checkout_customer');
