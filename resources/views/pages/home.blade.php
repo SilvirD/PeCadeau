@@ -32,8 +32,8 @@
 
 <section id="introduce2" class="section-padding">
     <div class="container text-center">
-        <h2 class="title" style="color: pink;">SPECIAL PRODUCT</h2>
-        <p class="sub-title" style="color: pink;">----------</p>
+        <h2 class="title" style="color: maroon;">SPECIAL PRODUCT</h2>
+        <p class="sub-title" style="color: maroon;">----------</p>
     </div>
 </section>
 <section id="introduce" class="section-padding">
@@ -63,8 +63,8 @@
 </section>
 <section id="introduce2" class="section-padding">
     <div class="container text-center">
-        <h2 class="title" style="color: pink;">LASTEST PRODUCTS</h2>
-        <p class="sub-title" style="color: pink;">----------</p>
+        <h2 class="title" style="color: maroon;">LASTEST PRODUCTS</h2>
+        <p class="sub-title" style="color: maroon;">----------</p>
     </div>
 </section>
 <section id="introduce" class="section-padding">
@@ -95,8 +95,8 @@
 </section>
 <section id="introduce2" class="section-padding">
     <div class="container text-center">
-        <h2 class="title" style="color: pink;">COLLECTION</h2>
-        <p class="sub-title" style="color: pink;">Our product pictures</p>
+        <h2 class="title" style="color: maroon;">COLLECTION</h2>
+        <p class="sub-title" style="color: maroon;">Our product pictures</p>
     </div>
 </section>
 <section id="album-picture" class="section-padding text-center">

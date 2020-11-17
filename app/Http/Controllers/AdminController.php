@@ -26,7 +26,7 @@ class AdminController extends Controller
         if($result){
             // Session::put('username',$result->acc_name);
             Session::put('acc_name',$result->username);
-            return Redirect::to('/dashboard');
+            return Redirect::to('/');
         }else{
             Session::put('message','User name or passwork is incorrect!');
             return Redirect::to('/admin');

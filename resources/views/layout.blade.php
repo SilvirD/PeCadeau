@@ -32,26 +32,31 @@
                 </nav>
                 <!--search-->
                 <div class="search-box">
-                    <form action="{{URL::to('/tim-kiem')}}" method="POST">
+                    <form action="{{URL::to('/tim-kiem')}}" method="POST" class="form2">
                         {{csrf_field()}}
                         <input type="text" class="sb-text" name="keywords_submit" placeholder="Search">
-                        <input class="sb-sbm fas fa-search" type="submit" name="search_items">
-
+                        <button class="sb-sbm" type="submit" name="search_items">
+                        <i class="fas fa-search"></i>
+                        </button>
+                        
+                        <a href="{{ session('acc')?URL::to('/infor'):URL::to('/login-checkout')}}"><i class="fas fa-user-circle"></i><?php echo session('acc')?session('acc')->acc_name:' Log in';?></a>
+                        <a href="{{URL::to('/logout-checkout')}}" <?php echo session('acc')?'':'hidden';?> ><i class="fas fa-sign-out-alt" style="margin-left: 10px;"></i></i>Log out</a>
                         <!-- Check Login-logout -->
-                        <?php
-                            $customer_id = Session::get('acc_id');
-                            if($customer_id != NULL) {
+                        <!-- <?php
+                          //  $customer_id = Session::get('acc_id');
+                        // if($customer_id != NULL) {
                         ?>
+                        
                         <a href="{{URL::to('/logout-checkout')}}"><i class="fas fa-user-circle"
-                                style="color:black; margin-left:15px"></i> Log out</a>
+                                style="color:black"></i> Log out</a>
                         <?php
-                        }else{
+                        //}else{
                         ?>
                         <a href="{{URL::to('/login-checkout')}}"><i class="fas fa-user-circle"
-                                style="color:black; margin-left:15px"></i> Log in</a>
+                                style="color:black"></i> Log in</a>
                         <?php
-                        }
-                        ?>
+                        //}
+                        ?> -->
                         <!-- end check login-logout -->
 
                         <!-- Check Payment -->
@@ -125,11 +130,11 @@
         </div>
     </header>
     <section id="hero-image">
-        <div class="hero-content text-center">
-            <h1>Petit Cadeau</h1>
-            <p>For a perfect relative</p>
+        <div class="hero-content">
+            <h1>Petit <br> Cadeau</h1>
+            <p>For the perfect relative</p>
         </div>
-        <a href="{{URL::to('/trang-chu')}}" class="btn-WN">Watch now</a>
+        <a href="{{URL::to('/all-product')}}" class="btn-WN1">Watch now</a>
     </section>
     @yield('content')
     <section id="introduce2" class="section-padding">
@@ -183,6 +188,18 @@
         });
         //light-box
         $('.grid-album .grid-item').children('img').click(function() {
+            var lb_img = $(this).attr('src');
+            $('html').addClass('overflow-hidden');
+            $('body').addClass('body-no-scoll');
+            $('body').append('<div class="light-box-page"><div class="light-box-img"><img src="' +
+                lb_img + '" alt=""></div></div>')
+            $('body').on('click', '.light-box-page', function() {
+                $('html').removeClass('overflow-hidden');
+                $('.light-box-page').remove();
+            });
+        });
+        //detail-img
+        $('.grid-album1 .grid-item1').children('img').click(function() {
             var lb_img = $(this).attr('src');
             $('html').addClass('overflow-hidden');
             $('body').addClass('body-no-scoll');

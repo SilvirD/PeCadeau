@@ -26,17 +26,17 @@ Route::get('/detail/{id}','App\Http\Controllers\HomeController@detail');
 //category
 
 //Backend
-Route::get('/admin','App\Http\Controllers\AdminController@index');
-Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard');
-Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
-Route::get('/logout','App\Http\Controllers\AdminController@logout');
+// Route::get('/admin','App\Http\Controllers\AdminController@index');
+// Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard');
+// Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+// Route::get('/logout','App\Http\Controllers\AdminController@logout');
 
 //category
 // Route::get('/add-category','App\Http\Controllers\categoryProduct@add_category');
 // Route::post('/save-category-product','App\Http\Controllers\categoryProduct@save_category_product');
 
 Route::get('/category/{id}','App\Http\Controllers\HomeController@category_product');
-
+Route::get('/all-product','App\Http\Controllers\HomeController@all_product');
 
 //Cart
 Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
@@ -51,3 +51,4 @@ Route::post('/add-customer','App\Http\Controllers\CheckOutController@add_custome
 Route::post('/login-customer','App\Http\Controllers\CheckOutController@login_customer');
 Route::get('/checkout','App\Http\Controllers\CheckOutController@checkout');
 Route::post('/save-checkout-customer','App\Http\Controllers\CheckOutController@save_checkout_customer');
+Route::get('/infor','App\Http\Controllers\CheckOutController@infor');

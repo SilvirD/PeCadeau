@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
+use Exception;
 
 session_start();
 
@@ -34,10 +35,15 @@ class CheckOutController extends Controller
         $data['acc_contact'] = $request->acc_phone;
         $data['perm_id'] = "2";
 
-        $customer_id = DB::table('account')->insertGetId($data);
+        try{
+            $customer_id = DB::table('account')->insertGetId($data);
 
-        Session::put('acc_id',$customer_id);
-        Session::put('acc_name',$request->acc_name);
+            Session::put('acc_id',$customer_id);
+            Session::put('acc_name',$request->acc_name);
+        }
+        catch(Exception $exception){
+            return back()->withError('Username "' . $request->acc_username . '" already exist. Please try again!')->withInput();
+        }
 
         return Redirect::to('/checkout');
 
@@ -49,11 +55,13 @@ class CheckOutController extends Controller
         $result = DB::table('account')->where('acc_email',$email)->where('password',$password)->first();
 
         if($result){
+            Session::put('acc',$result);
             Session::put('acc_id',$result->acc_id);
             return Redirect::to('/checkout');
         }
         else{
-            return Redirect::to('/login-checkout');
+            // return Redirect::to('/login-checkout');
+            return back()->withError('Username or password is incorrect. Please try again!')->withInput();
         }
     }
 
@@ -84,5 +92,8 @@ class CheckOutController extends Controller
 
     public function payment(){
 
+    }
+    public function infor(){
+        return view('pages.infor');
     }
 }

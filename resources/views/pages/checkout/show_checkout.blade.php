@@ -6,18 +6,12 @@
 
 <section id="cart_items">
     <div class="container">
-
-        <!-- <div class="register-req">
-            <p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-        </div>
-        /register-req -->
-
-        <div id="form">
-            <div class="shopper-informations">
+        <div id="form-deli">
                 <div class="row">
-                    <div class="col-sm-12 clearfix">
+                    <div class="col-sm-12">
+                        <h2>DELIVERY INFO</h2>
+                        <hr>
                         <div class="bill-to">
-                            <h4>DELIVERY INFO</h4>
                             <div class="form-one">
                                 <form action="{{URL::to('/save-checkout-customer')}}" method="POST">
                                     {{csrf_field()}}
@@ -30,13 +24,14 @@
                                     <input type="submit" value="Confirm" name="update_qty" class="btn btn-sm">
                                 </form>
                             </div>
-
+                            <div class="img-deli">
+                                <img src="{{('public/Frontend/image/delivery.jpg')}}" alt="">
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
         </div>
+    </div>
 
     </div>
 </section>

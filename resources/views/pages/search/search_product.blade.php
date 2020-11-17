@@ -4,6 +4,7 @@
 <section id="introduce" class="section-padding">
     <div class="container text-center">
     <h2 class="title">Search result</h2>
+    <hr>
         <div class="row">
             @foreach($search_product as $key => $product)
             <div class="col-lg-3">

@@ -42,4 +42,10 @@ class Homecontroller extends Controller
     	return view('pages.search.search_product')->with('product',$product)->with('category',$category)->with('search_product',$search_product);
 
     }
+
+    public function all_product(){
+        $allproduct = DB::table('product')->where('prod_quantity','>','0')->orderBy('prod_id','desc')->simplePaginate(12,['*'],'product3');;
+
+        return view('pages.allproduct')->with('product',$allproduct);
+    }
 }

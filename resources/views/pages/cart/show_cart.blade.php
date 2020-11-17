@@ -6,15 +6,17 @@
 <link href="{{asset('public/Frontend/css2/main.css')}}" rel="stylesheet">
 
 <section id="cart_items">
+    <h3>YOUR CART</h3>
+    <hr>
     <div class="container">
         <div class="table-responsive cart_info">
             <?php
-                    $content = Cart::content();
-                    // echo '<pre>';
-                    // print_r($content);
-                    // echo '<pre>';
+            $content = Cart::content();
+            // echo '<pre>';
+            // print_r($content);
+            // echo '<pre>';
 
-                ?>
+            ?>
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
@@ -42,25 +44,25 @@
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
                                 <form action="{{URL::to('/update-cart-quantity')}}" method="POST">
-                                    {{  csrf_field() }}
+                                    {{ csrf_field() }}
 
                                     <!-- <a class="cart_quantity_up" href=""> + </a> -->
-                                    <input class="cart_quantity_input" type="text" name="cart_quantity"
-                                        value="{{$v_content->qty}}" size="2">
+                                    <input class="cart_quantity_input" type="number" name="cart_quantity"
+                                        value="{{$v_content->qty}}" min="1" max="{{$product[0]->prod_quantity}}"
+                                        size="2">
                                     <!-- <a class="cart_quantity_down" href=""> - </a> -->
                                     <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart"
                                         class="form-control">
-                                    <input type="submit" value="Update" name="update_qty" class="btn btn-default btn-sm"
-                                        style="margin-left:10px; margin-down:5px">
+                                    <input type="submit" value="Update" name="update_qty" class="btn-sm">
                                 </form>
                             </div>
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">
                                 <?php
-                                        $subtotal = $v_content->price *$v_content->qty;
-                                        echo number_format($subtotal).' '.'vnđ';
-                                    ?>
+                                $subtotal = $v_content->price * $v_content->qty;
+                                echo number_format($subtotal) . ' ' . 'VND';
+                                ?>
 
                             </p>
                         </td>
@@ -78,15 +80,15 @@
 </section>
 <!--/#cart_items-->
 
-<hr>
 <section id="do_action">
     <div class="container">
         <div class="heading">
-            <h3>It's time </h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
-                delivery cost.</p>
+
         </div>
         <div class="row">
+            <div class="col-sm-3">
+
+            </div>
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
@@ -95,24 +97,28 @@
                         <li>Shipping Cost: <span>Free</span></li>
                         <li>Total: <span>{{Cart::total().' '.'VND'}}</span></li>
                     </ul>
-
-                    <!-- Check Cart -->
-                    <?php
-                            $customer_id = Session::get('acc_id');
-                            if($customer_id != NULL) {
+                    <div class="check-cart">
+                        <!-- Check Cart -->
+                        <?php
+                        $customer_id = Session::get('acc_id');
+                        if ($customer_id != NULL) {
                         ?>
-                    <a class="btn btn-default check_out" href="{{URL::to('/checkout')}}">Check Out</a>
+                        <a class="btn btn-default check_out" href="{{URL::to('/checkout')}}">Check Out</a>
 
-                    <?php
-                        }else{
+                        <?php
+                        } else {
                         ?>
-                    <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Check Out</a>
+                        <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Check Out</a>
 
-                    <?php
+                        <?php
                         }
                         ?>
-                    <!-- end check cart -->
+                        <!-- end check cart -->
+                    </div>
                 </div>
+            </div>
+            <div class="col-sm-3">
+
             </div>
         </div>
     </div>
