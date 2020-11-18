@@ -24,6 +24,7 @@ class CartController extends Controller
         $data['price'] = $product_info->prod_price;
         $data['weight'] = $product_info->prod_price;
         $data['options'] ['image'] = $product_info->thumbnail;
+        $data['options'] ['maxx'] = $product_info->prod_quantity;
 
         Cart::add($data);
         // Cart::destroy();
@@ -33,6 +34,8 @@ class CartController extends Controller
    public function show_cart(){
         $product = DB::table('product')->where('prod_quantity','>','0')->orderBy('prod_id','desc')->get();
         $category = DB::table('category')->orderBy('cate_id','desc')->get();
+
+
 
         return view ('pages.cart.show_cart')->with('product',$product)->with('category',$category);
    }

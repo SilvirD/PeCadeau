@@ -36,11 +36,13 @@
                         {{csrf_field()}}
                         <input type="text" class="sb-text" name="keywords_submit" placeholder="Search">
                         <button class="sb-sbm" type="submit" name="search_items">
-                        <i class="fas fa-search"></i>
+                            <i class="fas fa-search"></i>
                         </button>
-                        
-                        <a href="{{ session('acc')?URL::to('/infor'):URL::to('/login-checkout')}}"><i class="fas fa-user-circle"></i><?php echo session('acc')?session('acc')->acc_name:' Log in';?></a>
-                        <a href="{{URL::to('/logout-checkout')}}" <?php echo session('acc')?'':'hidden';?> ><i class="fas fa-sign-out-alt" style="margin-left: 10px;"></i></i>Log out</a>
+
+                        <a href="{{ session('acc')?URL::to('/infor'):URL::to('/login-checkout')}}"><i
+                                class="fas fa-user-circle"></i><?php echo session('acc')?session('acc')->acc_name:' Log in';?></a>
+                        <a href="{{URL::to('/logout-checkout')}}" <?php echo session('acc')?'':'hidden';?>><i
+                                class="fas fa-sign-out-alt" style="margin-left: 10px;"></i></i>Log out</a>
                         <!-- Check Login-logout -->
                         <!-- <?php
                           //  $customer_id = Session::get('acc_id');
@@ -60,7 +62,7 @@
                         <!-- end check login-logout -->
 
                         <!-- Check Payment -->
-                         <?php
+                        <?php
                             $customer_id = Session::get('acc_id');
                             if($customer_id != NULL) {
                         ?>
@@ -212,6 +214,7 @@
         });
     });
     </script>
+
 </body>
 
 </html>

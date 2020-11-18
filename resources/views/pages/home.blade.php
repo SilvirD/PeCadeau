@@ -9,23 +9,33 @@
         <p class="sub-title" style="color: lightcoral;">----------</p>
         <div class="row">
             @foreach($product3 as $key => $value)
-            <div class="col-lg-3">
-                <div class="item">
-                    <figure>  
-                        <img src="{{('public/Upload/product/'.$value->thumbnail)}}" alt="">
-                        <figcaption>
-                            <h3>{{$value->prod_name}}</h3>
-                            <p>{{$value->prod_desc}}</p>
-                            <p class="product-price">{{$value->prod_price}} VND</p>
-                            <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
-                        </figcaption>
-                    </figure>    
+                <div class="col-lg-3">
+                    <div class="item">
+                        <figure>
+                            <img src="{{('public/Upload/product/'.$value->thumbnail)}}" alt="">
+                            <figcaption>
+                                <h3>{{$value->prod_name}}</h3>
+                                <!-- <p>{{$value->prod_desc}}</p> -->
+                                <p class="product-price">{{$value->prod_price}} VND</p>
+                                <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
+                            </figcaption>
+                            <form action="{{URL::to('/save-cart')}}" method="POST">
+                        {{ csrf_field() }}
+                            <input type="hidden" name="prodid_hidden" value="{{$product3[0]->prod_id}}">
+                            <input type="hidden" name="prod_qty" value="1">
+                            <button type="submit" class="btn-WN">
+                                <i class="fa fa-shopping-cart"></i> Add to cart
+                            </button>
+                            </form>
+
+                        </figure>
+                    </div>
                 </div>
-            </div>
+
             @endforeach
         </div>
         <br>
-        {!! $product3->links()  !!}
+        {!! $product3->links() !!}
     </div>
 </section>
 
@@ -43,22 +53,22 @@
             @foreach($product2 as $key => $value)
             <div class="col-lg-3">
                 <div class="item">
-                    <figure>  
+                    <figure>
                         <img src="{{('public/Upload/product/'.$value->thumbnail)}}" alt="">
                         <figcaption>
                             <h3>{{$value->prod_name}}</h3>
-                            <p>{{$value->prod_desc}}</p>
+                            <!-- <p>{{$value->prod_desc}}</p> -->
                             <p class="product-price">{{$value->prod_price}} VND</p>
                             <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
                         </figcaption>
                     </figure>
-                    
+
                 </div>
             </div>
             @endforeach
         </div>
         <br>
-        {!! $product2->links()  !!}
+        {!! $product2->links() !!}
     </div>
 </section>
 <section id="introduce2" class="section-padding">
@@ -74,22 +84,22 @@
             @foreach($product4 as $key => $value)
             <div class="col-lg-3">
                 <div class="item">
-                    <figure>  
+                    <figure>
                         <img src="{{('public/Upload/product/'.$value->thumbnail)}}" alt="">
                         <figcaption>
                             <h3>{{$value->prod_name}}</h3>
-                            <p>{{$value->prod_desc}}</p>
+                            <!-- <p>{{$value->prod_desc}}</p> -->
                             <p class="product-price">{{$value->prod_price}} VND</p>
                             <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
                         </figcaption>
                     </figure>
-                    
+
                 </div>
             </div>
             @endforeach
         </div>
         <br>
-        {!! $product4->links()  !!}
+        {!! $product4->links() !!}
     </div>
 
 </section>
@@ -113,4 +123,3 @@
 </section>
 
 @endsection
-

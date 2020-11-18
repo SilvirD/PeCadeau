@@ -45,9 +45,9 @@
                         <p> <b>Status: </b>
 
                             @if($product[0]->prod_quantity > 0)
-                            <?php echo "Còn hàng" ?>
+                            <?php echo "Only {$product[0]->prod_quantity} left" ?>
                             @else
-                            <?php echo "Hết hàng" ?>
+                            <?php echo "Out of stock" ?>
                             @endif
 
                         </p>

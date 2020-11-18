@@ -32,14 +32,14 @@
                     @foreach ($content as $v_content)
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="{{('public/Upload/product/'.$v_content->options->image)}}" alt=""
+                            <a href="{{URL::to('/detail/'.$v_content->id)}}"><img src="{{('public/Upload/product/'.$v_content->options->image)}}" alt=""
                                     width="50"></a>
                         </td>
                         <td class="cart_description">
                             <h4><a href="">{{$v_content->name}}</a></h4>
                         </td>
                         <td class="cart_price">
-                            <p>{{number_format($v_content->price).' '.'vnđ'}}</p>
+                            <p>{{number_format($v_content->price).' '.'VND'}}</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -48,7 +48,7 @@
 
                                     <!-- <a class="cart_quantity_up" href=""> + </a> -->
                                     <input class="cart_quantity_input" type="number" name="cart_quantity"
-                                        value="{{$v_content->qty}}" min="1" max="{{$product[0]->prod_quantity}}"
+                                        value="{{$v_content->qty}}" min="1" max="{{$v_content->options->maxx}}"
                                         size="2">
                                     <!-- <a class="cart_quantity_down" href=""> - </a> -->
                                     <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart"
