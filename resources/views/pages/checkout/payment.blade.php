@@ -4,6 +4,13 @@
 
 <link href="{{asset('public/Frontend/css2/main.css')}}" rel="stylesheet">
 
+@if (\Session::has('exceed'))
+<div class="alert alert-danger alert-dismissable text-center">
+    <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
+    \Session::get('exceed') !!}
+</div>
+@endif
+
 <section id="cart_items">
     <div class="container">
         <div id="form-deli">
@@ -13,7 +20,6 @@
     </div>
 
     <div class="review-payment">
-        <h2>Check cart</h2>
         <div class="table-responsive cart_info">
             <?php
             $content = Cart::content();
@@ -84,17 +90,17 @@
         </div>
     </div>
 
-    <h4 style="margin:40px 0; font-size:20px">Payment option</h4>
+    <h4 style="margin:40px 0; font-size:20px; margin-left:50px">Payment option</h4>
     <form action="{{URL::to('/confirm-order')}}" method="POST">
         {{csrf_field()}}
-        <div class="payment-options">
+        <div class="payment-options cart_quantity_button" style="margin-left:50px">
             <span>
-                <label><input type="radio" name="payment" value="1"> Direct Bank Transfer</label>
+                <label><input type="radio" name="payment-opt" value="1"> Direct Bank Transfer</label>
             </span>
             <span>
-                <label><input type="radio" name="payment" value="2"> Cash on delivery</label>
+                <label><input type="radio" name="payment-opt" value="2"> Cash on delivery</label>
             </span>
-            <input type="submit" value="CONFIRM" name="conf_order" class="btn btn-sm">
+            <input type="submit" value="CONFIRM" name="conf_order" class=" btn-sm">
         </div>
     </form>
 

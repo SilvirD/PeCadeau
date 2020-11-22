@@ -455,4 +455,7 @@ footer {
     border: lightcoral;
     width: 50px;
 }
-
+#cart_items h3{
+    padding-top: 20px;
+    text-align: center;
+}

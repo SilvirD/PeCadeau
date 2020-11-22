@@ -20,19 +20,20 @@
     <header>
         <div class="container">
             @if (session('error'))
-            <!-- <div class="alert alert-danger alert-dismissable text-center">
+            <div class="alert alert-danger alert-dismissable text-center">
                 <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button>
                 {{ session('error') }}
-            </div> -->
-            <div class="alert alert-success alert-dismissible">
+            </div>
+            <!-- <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Success!</strong> Indicates a successful or positive action.
-            </div>
+            </div> -->
             @endif
 
             @if (\Session::has('success'))
-            <div class="alert alert-success text-center">
-                {!! \Session::get('success') !!}
+            <div class="alert alert-success alert-dismissable text-center">
+                <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
+                \Session::get('success') !!}
             </div>
             @endif
 
@@ -85,7 +86,7 @@
                         <?php
                             $customer_id = Session::get('acc_id');
                             $delivery_id = Session::get('deli_id');
-                            if($customer_id != NULL && $delivery_id == NULL) {
+                        if($customer_id != NULL && $delivery_id == NULL) {
                         ?>
                         <a href="{{URL::to('/checkout')}}"><i class="fas fa-crosshairs"
                                 style="color:black; margin-left:15px"></i> Payment</a>

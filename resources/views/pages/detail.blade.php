@@ -37,7 +37,8 @@
                         <hr>
                         <p> <b>Supplier: </b> <b>{{$supplier[0]->NCC_name}}</b></p>
                         <hr>
-                        <p> <b>Price: </b> <b class="product-price">{{number_format($product[0]->prod_price)}} VND</b></p>
+                        <p> <b>Price: </b> <b class="product-price">{{number_format($product[0]->prod_price)}} VND</b>
+                        </p>
                         <hr>
                         <label for="exampleInputEmail1"><b>Quantity: </b></label>
                         <input type="number" name="prod_qty" class="prod_quantity" min="1" value="1"
@@ -54,9 +55,16 @@
 
                         </p>
                         <hr>
+
+                        <?php
+                            if($product[0]->prod_quantity > 0){
+                        ?>
                         <button type="submit" class="btn-WN">
                             <i class="fa fa-shopping-cart"></i> Add to cart
                         </button>
+                        <?php
+                        }
+                        ?>
                     </form>
                 </div>
             </div>

@@ -46,7 +46,6 @@
                             <div class="cart_quantity_button">
                                 <form action="{{URL::to('/update-cart-quantity')}}" method="POST">
                                     {{ csrf_field() }}
-
                                     <!-- <a class="cart_quantity_up" href=""> + </a> -->
                                     <input class="cart_quantity_input" type="number" name="cart_quantity"
                                         value="{{$v_content->qty}}" min="1" max="{{$v_content->options->maxx}}"

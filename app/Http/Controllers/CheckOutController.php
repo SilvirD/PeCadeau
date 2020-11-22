@@ -44,7 +44,7 @@ class CheckOutController extends Controller
             Session::put('acc_id', $customer_id);
             Session::put('acc_name', $request->acc_name);
         } catch (Exception $exception) {
-            return back()->withError('Username "' . $request->acc_username . '" already exist. Please try again!')->withInput();
+            return back()->with('login-fail','Username "' . $request->acc_username . '" already exist. Please try again!')->withInput();
         }
 
         return Redirect::to('/checkout');
@@ -63,7 +63,7 @@ class CheckOutController extends Controller
             return Redirect::to('/trang-chu');
         } else {
             // return Redirect::to('/login-checkout');
-            return back()->withError('Username or password is incorrect. Please try again!')->withInput();
+            return back()->with('login-fail','Username or password is incorrect. Please try again!')->withInput();
         }
     }
 
@@ -92,25 +92,32 @@ class CheckOutController extends Controller
 
     }
 
-    public function confirm_order(){
-                //insert invoice
-                $invoice = array();
-                $invoice['sell_date']=Carbon::now();
-                $invoice['deli_id']= session::get('deli_id');
-                $invoice['acc_id']= session::get('acc_id');
-                $invoice_id = DB::table('invoice')->insertGetId($invoice);
-        
-                // insert detail
+    public function confirm_order(){        
                 $cart = Cart::content();
+                $invoice = array();
                 $detailinvoice = array();
                 foreach($cart as $key => $value){
-                    $detailinvoice['prod_id']=$value->id;
-                    $detailinvoice['invoice_id']=$invoice_id;
-                    $detailinvoice['prod_name']=$value->name;
-                    $detailinvoice['sell_quantity']=$value->qty;
-                    $detailinvoice['totalPrice']=$value->price;
-                    DB::table('invoice_detail')->insert($detailinvoice);
-                    DB::table('product')->where('prod_id',$value->id)->decrement('prod_quantity',$value->qty);
+                    if($value->qty <= $value->options->maxx){
+                        //insert invoice
+                        $invoice['sell_date']=Carbon::now();
+                        $invoice['deli_id']= session::get('deli_id');
+                        $invoice['acc_id']= session::get('acc_id');
+                        $invoice_id = DB::table('invoice')->insertGetId($invoice);
+
+                        // insert detail
+                        $detailinvoice['prod_id']=$value->id;
+                        $detailinvoice['invoice_id']=$invoice_id;
+                        $detailinvoice['prod_name']=$value->name;
+                        $detailinvoice['sell_quantity']=$value->qty;
+                        $detailinvoice['totalPrice']=$value->price;
+
+                        DB::table('invoice_detail')->insert($detailinvoice);
+                        DB::table('product')->where('prod_id',$value->id)->decrement('prod_quantity',$value->qty);
+                    }
+                    else{
+                        return back()->with('exceed','The product is in excess of the allowed quantity! Please check again!')->withInput();
+                    }
+                   
                 }
                 
                 Cart::destroy();

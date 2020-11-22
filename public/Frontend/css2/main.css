@@ -144,7 +144,7 @@ a#scrollUp i {
 **************************/
 
 #do_action {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .breadcrumbs {
@@ -189,7 +189,7 @@ a#scrollUp i {
     margin: 0px;
 }
 
-#cart_items h3 {
+#do_action h3 {
     text-align: center;
     margin-top: 20px;
 }
@@ -612,6 +612,19 @@ textarea {
     margin-left: 40px;
 }
 .bill-to .btn-sm {
+    background-image: linear-gradient(
+        45deg,
+        #ff9a9e 0%,
+        #fad0c4 99%,
+        #fad0c4 100%
+    );
+    border-radius: 10px;
+    color: white;
+}
+.btn-sm:hover{
+    color: #000;
+}
+.total_area .btn-sm {
     background-image: linear-gradient(
         45deg,
         #ff9a9e 0%,
