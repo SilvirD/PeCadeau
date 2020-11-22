@@ -21,7 +21,8 @@
                                     <input type="text" name="deli_phone" placeholder="Phone number(*)" required>
                                     <textarea name="deli_note" placeholder="Your order's notes." rows="16"></textarea>
                                     <hr>
-                                    <input type="submit" value="Confirm" name="update_qty" class="btn btn-sm">
+                                    <!-- <input type="hidden" name="hidAccID" value="{{session('acc')->acc_id}}"> -->
+                                    <input type="submit" value="Confirm" name="conf_deli" class="btn btn-sm">
                                 </form>
                             </div>
                             <div class="img-deli">

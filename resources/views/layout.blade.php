@@ -16,6 +16,7 @@
 <body>
     <header>
         <div class="container">
+
             <div class="row">
                 <nav id="home-nav">
                     <ul class="main-menu">
@@ -64,10 +65,18 @@
                         <!-- Check Payment -->
                         <?php
                             $customer_id = Session::get('acc_id');
-                            if($customer_id != NULL) {
+                            $delivery_id = Session::get('deli_id');
+                            if($customer_id != NULL && $delivery_id == NULL) {
                         ?>
                         <a href="{{URL::to('/checkout')}}"><i class="fas fa-crosshairs"
                                 style="color:black; margin-left:15px"></i> Payment</a>
+
+                        <?php
+                            }elseif($customer_id != NULL && $delivery_id != NULL){
+                        ?>
+                        <a href="{{URL::to('/payment')}}"><i class="fas fa-crosshairs"
+                                style="color:black; margin-left:15px"></i> Payment</a>
+
                         <?php
                         }else{
                         ?>

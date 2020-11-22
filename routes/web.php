@@ -51,4 +51,8 @@ Route::post('/add-customer','App\Http\Controllers\CheckOutController@add_custome
 Route::post('/login-customer','App\Http\Controllers\CheckOutController@login_customer');
 Route::get('/checkout','App\Http\Controllers\CheckOutController@checkout');
 Route::post('/save-checkout-customer','App\Http\Controllers\CheckOutController@save_checkout_customer');
+Route::post('/confirm-order','App\Http\Controllers\CheckOutController@confirm_order');
+
+
+Route::get('/payment','App\Http\Controllers\CheckOutController@payment');
 Route::get('/infor','App\Http\Controllers\CheckOutController@infor');

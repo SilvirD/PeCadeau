@@ -19,8 +19,9 @@ class Homecontroller extends Controller
     {
      	$product_detail = DB::table('product')->where('prod_id',$prod_id)->orderBy('prod_id','desc')->get();
         $image_product = DB::table('product_image')->orderBy('prod_id','desc')->get();
+        $supplier = DB::table('nhacungcap')->orderBy('NCC_id','desc')->get();
 
-        return view('pages.detail')->with('product',$product_detail)->with('product_image',$image_product);
+        return view('pages.detail')->with('product',$product_detail)->with('product_image',$image_product)->with('supplier',$supplier);
     }
     public function category_product($cate_id){
         $product_category = DB::table('product')->where('cate_id',$cate_id)->orderBy('prod_id','desc')->get();

@@ -2,13 +2,18 @@
 @section('content')
 
 
-
 <link href="{{asset('public/Frontend/css2/main.css')}}" rel="stylesheet">
 
 <section id="cart_items">
-    <h3>YOUR CART</h3>
-    <hr>
     <div class="container">
+        <div id="form-deli">
+            <H3>PAYMENT</H3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="review-payment">
+        <h2>Check cart</h2>
         <div class="table-responsive cart_info">
             <?php
             $content = Cart::content();
@@ -78,59 +83,22 @@
             </table>
         </div>
     </div>
+
+    <h4 style="margin:40px 0; font-size:20px">Payment option</h4>
+    <form action="{{URL::to('/confirm-order')}}" method="POST">
+        {{csrf_field()}}
+        <div class="payment-options">
+            <span>
+                <label><input type="checkbox" name="payment-opt" value="1"> Direct Bank Transfer</label>
+            </span>
+            <span>
+                <label><input type="checkbox" name="payment-opt" value="2"> Cash on delivery</label>
+            </span>
+            <input type="submit" value="CONFIRM" name="conf_order" class="btn btn-sm">
+        </div>
+    </form>
+
 </section>
 <!--/#cart_items-->
-
-<section id="do_action">
-    <div class="container">
-        <div class="heading">
-
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-
-            </div>
-            <div class="col-sm-6">
-                <div class="total_area">
-                    <ul>
-                        <li>Cart Total: <span>{{Cart::subtotal().' '.'VND'}}</span></li>
-                        <li>Tax: <span>{{Cart::tax().' '.'VND'}}</span></li>
-                        <li>Shipping Cost: <span>Free</span></li>
-                        <li>Total: <span>{{Cart::total().' '.'VND'}}</span></li>
-                    </ul>
-                    <div class="check-cart">
-                        <!-- Check Cart -->
-                        <?php
-                        $customer_id = Session::get('acc_id');
-                        $delivery_id = Session::get('deli_id');
-                        if ($customer_id != NULL && $delivery_id == NULL) {
-                        ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/checkout')}}">Check Out</a>
-
-                        <?php
-                            }elseif($customer_id != NULL && $delivery_id != NULL){
-                        ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/payment')}}">Check Out</a>
-                        <?php
-                        } else {
-                        ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Check Out</a>
-
-                        <?php
-                        }
-                        ?>
-                        <!-- end check cart -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-
-            </div>
-        </div>
-    </div>
-</section>
-<!--/#do_action-->
-
-
 
 @endsection

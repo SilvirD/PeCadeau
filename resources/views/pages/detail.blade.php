@@ -35,7 +35,9 @@
                         <br>
                         <p> <b>Describe: </b>{{$product[0]->prod_desc}}</p>
                         <hr>
-                        <p> <b>Price: </b> <b class="product-price">{{$product[0]->prod_price}} VND</b></p>
+                        <p> <b>Supplier: </b> <b>{{$supplier[0]->NCC_name}}</b></p>
+                        <hr>
+                        <p> <b>Price: </b> <b class="product-price">{{number_format($product[0]->prod_price)}} VND</b></p>
                         <hr>
                         <label for="exampleInputEmail1"><b>Quantity: </b></label>
                         <input type="number" name="prod_qty" class="prod_quantity" min="1" value="1"
@@ -45,9 +47,9 @@
                         <p> <b>Status: </b>
 
                             @if($product[0]->prod_quantity > 0)
-                            <?php echo "Only {$product[0]->prod_quantity} left" ?>
+                            <?php echo "Còn {$product[0]->prod_quantity} sản phẩm" ?>
                             @else
-                            <?php echo "Out of stock" ?>
+                            <?php echo "Hết hàng!" ?>
                             @endif
 
                         </p>

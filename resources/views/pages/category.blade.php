@@ -22,7 +22,7 @@
                         <figcaption class="caption">
                             <h3>{{$value->prod_name}}</h3>
                             <p>{{$value->prod_desc}}</p>
-                            <p class="product-price">{{$value->prod_price}}</p>
+                            <p class="product-price">{{$value->prod_price}} VND</p>
                         </figcaption>
                         <a href="{{URL::TO('/detail/'.$value->prod_id)}}" class="btn-WN">Watch now</a>
                     </figure>

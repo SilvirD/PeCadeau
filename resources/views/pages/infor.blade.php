@@ -24,28 +24,34 @@
 <section id="cart_items">
     <div class="container">
         <div id="form-deli">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h2>CUSTOMER INFO</h2>
-                        <hr>
-                        <div class="bill-to">
-                            <div class="form-one">
-                                <form action="{{URL::to('/save-checkout-customer')}}" method="POST">
-                                    {{csrf_field()}}
-                                    <input type="text" name="deli_email" value="{{session('acc')->acc_email}}" placeholder="Email(*)" required>
-                                    <input type="text" name="deli_name" value="{{session('acc')->acc_name}}" placeholder="Your name(*)" required>
-                                    <!-- <input type="text" name="deli_address" placeholder="Address(*)" required> -->
-                                    <input type="text" name="deli_phone" value="{{session('acc')->acc_contact}}" placeholder="Phone number(*)" required>
-                                    <hr>
-                                    <input type="submit" value="Confirm" name="update_qty" class="btn btn-sm">
-                                </form>
-                            </div>
-                            <div class="img-deli">
-                                <img src="{{('public/Frontend/image/avt.jpg')}}" alt="">
-                            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>CUSTOMER INFO</h2>
+                    <hr>
+                    <div class="bill-to">
+                        <div class="form-one">
+                            <form action="{{URL::to('/trang-chu')}}">
+                                <input type="text" name="account-email" value="{{session('acc')->acc_email}}"
+                                    placeholder="Email(*)" required>
+                                <input type="text" name="account-name" value="{{session('acc')->acc_name}}"
+                                    placeholder="Your name(*)" required>
+                                <input type="text" name="account-phone" value="{{session('acc')->acc_contact}}"
+                                    placeholder="Phone number(*)" required>
+                                <hr>
+                                <input type="submit" value="Confirm" name="update_qty" class="btn btn-sm">
+                            </form>
+                        </div>
+                        <div class="form-two">
+                            <h4>Shopping history</h4>
+                            <?php
+                            print_r(dd(session()->all()));
+
+                           ?>
+                            <!-- <img src="{{('public/Frontend/image/avt.jpg')}}" alt=""> -->
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 
