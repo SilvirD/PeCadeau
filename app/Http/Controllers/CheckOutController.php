@@ -106,21 +106,23 @@ class CheckOutController extends Controller
                 foreach($cart as $key => $value){
                     $detailinvoice['prod_id']=$value->id;
                     $detailinvoice['invoice_id']=$invoice_id;
+                    $detailinvoice['prod_name']=$value->name;
                     $detailinvoice['sell_quantity']=$value->qty;
                     $detailinvoice['totalPrice']=$value->price;
                     DB::table('invoice_detail')->insert($detailinvoice);
                     DB::table('product')->where('prod_id',$value->id)->decrement('prod_quantity',$value->qty);
                 }
                 
-                $history = DB::table('invoice')->join('invoice_detail','invoice.invoice_id','=','invoice_detail.invoice_id')->select('invoice_detail.invoice_id', 'prod_id', 'sell_quantity', 'totalPrice')->where('invoice.acc_id','=',session::get('acc_id'))->get();
-                Session::put('history', $history);
-
                 Cart::destroy();
                 return Redirect::to('/trang-chu')->with('success','Your order is saved! Please wait for our contact!');
     }
 
     public function infor()
     {
+        $id = session::get('acc_id');
+        $history = DB::table('invoice')->join('invoice_detail','invoice.invoice_id','=','invoice_detail.invoice_id')->select('invoice_detail.invoice_id', 'prod_id','prod_name', 'sell_quantity', 'totalPrice')->where('invoice.acc_id','=',$id)->get();
+        Session::put('history', $history);
+
         return view('pages.infor');
     }
 
@@ -128,6 +130,12 @@ class CheckOutController extends Controller
         $product = DB::table('product')->where('prod_quantity', '>', '0')->orderBy('prod_id', 'desc')->get();
         $category = DB::table('category')->orderBy('cate_id', 'desc')->get();
 
-        return view('pages.checkout.payment')->with('product', $product)->with('category', $category);
+
+        if (Cart::count() > 0){
+            return view('pages.checkout.payment')->with('product', $product)->with('category', $category);
+        }
+        else{
+            return Redirect::to('/trang-chu')->withError('Your cart is empty! Please add some stuff!')->withInput();
+       }
     }
 }

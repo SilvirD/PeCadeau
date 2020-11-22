@@ -89,10 +89,10 @@
         {{csrf_field()}}
         <div class="payment-options">
             <span>
-                <label><input type="checkbox" name="payment-opt" value="1"> Direct Bank Transfer</label>
+                <label><input type="radio" name="payment" value="1"> Direct Bank Transfer</label>
             </span>
             <span>
-                <label><input type="checkbox" name="payment-opt" value="2"> Cash on delivery</label>
+                <label><input type="radio" name="payment" value="2"> Cash on delivery</label>
             </span>
             <input type="submit" value="CONFIRM" name="conf_order" class="btn btn-sm">
         </div>

@@ -11,11 +11,30 @@
     <link rel="stylesheet" href="{{asset('public/Frontend/css/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <header>
         <div class="container">
+            @if (session('error'))
+            <!-- <div class="alert alert-danger alert-dismissable text-center">
+                <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button>
+                {{ session('error') }}
+            </div> -->
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> Indicates a successful or positive action.
+            </div>
+            @endif
+
+            @if (\Session::has('success'))
+            <div class="alert alert-success text-center">
+                {!! \Session::get('success') !!}
+            </div>
+            @endif
 
             <div class="row">
                 <nav id="home-nav">

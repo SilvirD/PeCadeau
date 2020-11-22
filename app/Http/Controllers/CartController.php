@@ -34,7 +34,13 @@ class CartController extends Controller
    public function show_cart(){
         $product = DB::table('product')->where('prod_quantity','>','0')->orderBy('prod_id','desc')->get();
         $category = DB::table('category')->orderBy('cate_id','desc')->get();
-        return view ('pages.cart.show_cart')->with('product',$product)->with('category',$category);
+
+          if (Cart::count() > 0){
+               return view ('pages.cart.show_cart')->with('product',$product)->with('category',$category);
+          }
+          else{
+               return Redirect::to('/trang-chu')->withError('Your cart is empty! Please add some stuff!')->withInput();
+          }
    }
 
    public function delete_item_cart($rowId){

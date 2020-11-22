@@ -120,6 +120,7 @@
                         }
                         ?>
                         <!-- end check cart -->
+
                     </div>
                 </div>
             </div>
