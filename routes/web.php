@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/',[Homecontroller::class,'index'])->name('');
 
-// Route::get('/trang-chu',[Homecontroller::class,'index'])->name('trang-chu');
 
 //Frontend
 Route::get('/','App\Http\Controllers\Homecontroller@index');
@@ -23,18 +21,8 @@ Route::post('/tim-kiem','App\Http\Controllers\HomeController@search');
 
 //detail
 Route::get('/detail/{id}','App\Http\Controllers\HomeController@detail');
-//category
-
-//Backend
-// Route::get('/admin','App\Http\Controllers\AdminController@index');
-// Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard');
-// Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
-// Route::get('/logout','App\Http\Controllers\AdminController@logout');
 
 //category
-// Route::get('/add-category','App\Http\Controllers\categoryProduct@add_category');
-// Route::post('/save-category-product','App\Http\Controllers\categoryProduct@save_category_product');
-
 Route::get('/category/{id}','App\Http\Controllers\HomeController@category_product');
 Route::get('/all-product','App\Http\Controllers\HomeController@all_product');
 

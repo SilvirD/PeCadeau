@@ -19,23 +19,40 @@
 <body>
     <header>
         <div class="container">
+            <!-- NOTIFICATION -->
+            <!-- Check cart empty -->
             @if (session('error'))
             <div class="alert alert-danger alert-dismissable text-center">
                 <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button>
                 {{ session('error') }}
             </div>
-            <!-- <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Success!</strong> Indicates a successful or positive action.
-            </div> -->
             @endif
 
+            <!-- order successfully -->
             @if (\Session::has('success'))
             <div class="alert alert-success alert-dismissable text-center">
                 <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
                 \Session::get('success') !!}
             </div>
             @endif
+
+            <!-- check quantity exceed -->
+            @if (\Session::has('exceed'))
+            <div class="alert alert-danger alert-dismissable text-center">
+                <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
+                \Session::get('exceed') !!}
+            </div>
+            @endif
+
+            <!-- check login signup -->
+            @if (\Session::has('login-fail'))
+            <div class="alert alert-danger alert-dismissable text-center">
+                <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
+                \Session::get('login-fail') !!}
+            </div>
+            @endif
+
+            <!--END NOTIFICATION -->
 
             <div class="row">
                 <nav id="home-nav">

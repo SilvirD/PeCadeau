@@ -4,12 +4,6 @@
 
 <link href="{{asset('public/Frontend/css2/main.css')}}" rel="stylesheet">
 
-@if (\Session::has('exceed'))
-<div class="alert alert-danger alert-dismissable text-center">
-    <button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
-    \Session::get('exceed') !!}
-</div>
-@endif
 
 <section id="cart_items">
     <div class="container">
@@ -23,10 +17,6 @@
         <div class="table-responsive cart_info">
             <?php
             $content = Cart::content();
-            // echo '<pre>';
-            // print_r($content);
-            // echo '<pre>';
-
             ?>
             <table class="table table-condensed">
                 <thead>

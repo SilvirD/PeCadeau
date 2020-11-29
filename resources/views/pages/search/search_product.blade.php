@@ -14,10 +14,18 @@
                         
                         <figcaption class="caption">
                             <h3>{{$product->prod_name}}</h3>
-                            <p>{{$product->prod_desc}}</p>
-                            <p class="product-price">{{$product->prod_price}}</p>
+                            <p class="product-price">{{number_format($product->prod_price)}} VND</p>
+                            <a href="{{URL::TO('/detail/'.$product->prod_id)}}" class="btn-WN">Watch now</a>
                         </figcaption>
-                        <a href="{{URL::TO('/detail/'.$product->prod_id)}}" class="btn-WN">Watch now</a>
+                        <br>
+                        <form action="{{URL::to('/save-cart')}}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="prodid_hidden" value="{{$product->prod_id}}">
+                            <input type="hidden" name="prod_qty" value="1">
+                            <button type="submit" class="btn-WN">
+                                <i class="fa fa-shopping-cart"></i> Add to cart
+                            </button>
+                        </form>
                     </figure>
                 </div>
             </div>

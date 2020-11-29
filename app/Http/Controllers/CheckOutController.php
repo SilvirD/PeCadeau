@@ -40,22 +40,21 @@ class CheckOutController extends Controller
 
         try {
             $customer_id = DB::table('account')->insertGetId($data);
-
             Session::put('acc_id', $customer_id);
             Session::put('acc_name', $request->acc_name);
         } catch (Exception $exception) {
             return back()->with('login-fail','Username "' . $request->acc_username . '" already exist. Please try again!')->withInput();
         }
 
-        return Redirect::to('/checkout');
+        return Redirect::to('/trang-chu');
     }
 
     public function login_customer(Request $request)
     {
-        $email = $request->email_account;
+        $username = $request->username_account;
         $password = $request->password_account;
 
-        $result = DB::table('account')->where('acc_email', $email)->where('password', $password)->first();
+        $result = DB::table('account')->where('username', $username)->where('password', $password)->first();
 
         if ($result) {
             Session::put('acc', $result);
@@ -96,20 +95,22 @@ class CheckOutController extends Controller
                 $cart = Cart::content();
                 $invoice = array();
                 $detailinvoice = array();
+              
+
+                //insert invoice
+                $invoice['sell_date']=Carbon::now();
+                $invoice['deli_id']= session::get('deli_id');
+                $invoice['acc_id']= session::get('acc_id');
+                $invoice_id = DB::table('invoice')->insertGetId($invoice);
+
                 foreach($cart as $key => $value){
                     if($value->qty <= $value->options->maxx){
-                        //insert invoice
-                        $invoice['sell_date']=Carbon::now();
-                        $invoice['deli_id']= session::get('deli_id');
-                        $invoice['acc_id']= session::get('acc_id');
-                        $invoice_id = DB::table('invoice')->insertGetId($invoice);
-
                         // insert detail
                         $detailinvoice['prod_id']=$value->id;
                         $detailinvoice['invoice_id']=$invoice_id;
                         $detailinvoice['prod_name']=$value->name;
                         $detailinvoice['sell_quantity']=$value->qty;
-                        $detailinvoice['totalPrice']=$value->price;
+                        $detailinvoice['totalPrice']=$value->price * $value->qty;
 
                         DB::table('invoice_detail')->insert($detailinvoice);
                         DB::table('product')->where('prod_id',$value->id)->decrement('prod_quantity',$value->qty);
@@ -117,9 +118,8 @@ class CheckOutController extends Controller
                     else{
                         return back()->with('exceed','The product is in excess of the allowed quantity! Please check again!')->withInput();
                     }
-                   
                 }
-                
+            
                 Cart::destroy();
                 return Redirect::to('/trang-chu')->with('success','Your order is saved! Please wait for our contact!');
     }

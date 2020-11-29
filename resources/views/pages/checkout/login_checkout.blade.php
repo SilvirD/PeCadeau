@@ -3,12 +3,7 @@
 
 <link href="{{asset('public/Frontend/css2/main.css')}}" rel="stylesheet">
 
-	@if (\Session::has('login-fail'))
-	<div class="alert alert-danger alert-dismissable text-center">
-		<button type="button" class="close" data-dismiss="alert" area-hidden="true">&times;</button> {!!
-		\Session::get('login-fail') !!}
-	</div>
-	@endif
+
 
 <section id="form">
     <!--form-->
@@ -22,7 +17,7 @@
                     <form action="{{URL::to('/login-customer')}}" method="POST">
                         {{csrf_field()}}
                         <div>
-                            <input type="text" name="email_account" placeholder="Your email" required />
+                            <input type="text" name="username_account" placeholder="Your username" required />
                             <input type="password" name="password_account" placeholder="Password" required />
                         </div>
                         <button type="submit" class="btn-login-sigup btn-default">Login</button>

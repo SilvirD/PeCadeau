@@ -35,8 +35,8 @@
     </div>
 </section>
 <section id="do_action">
-<h3>SHOPPING HISTORY</h3>
-<hr>
+    <h3>SHOPPING HISTORY</h3>
+    <hr>
 </section>
 <section id="cart_items">
     <div class="container">
@@ -47,11 +47,11 @@
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
+
                         <td class="description">Invoice ID</td>
                         <td class="description">Name</td>
                         <td class="quantity">Quantity</td>
                         <td class="total">Total</td>
-                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +60,7 @@
                         <td class="cart_price">
                             <p>{{($value->invoice_id)}}</p>
                         </td>
+
                         <td class="cart_description">
                             <p><a href="{{URL::to('/detail/'.$value->prod_id)}}">{{($value->prod_name)}}</a></p>
                         </td>
